@@ -1,10 +1,10 @@
 import NotFound from '@containers/NotFoundPage/Loadable';
-import HomeContainer from '@containers/HomeContainer/Loadable';
-import routeConstants from '@utils/routeConstants';
+import songConstants from '@utils/routeConstants';
+import ItunesProvider from './containers/ItunesProvider/Loadable';
 export const routeConfig = {
-  repos: {
-    component: HomeContainer,
-    ...routeConstants.repos
+  songs: {
+    component: ItunesProvider,
+    ...songConstants.songs
   },
   notFoundPage: {
     component: NotFound,
