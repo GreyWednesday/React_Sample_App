@@ -1,10 +1,10 @@
 import NotFound from '@containers/NotFoundPage/Loadable';
-import HomeContainer from '@containers/HomeContainer/Loadable';
-import routeConstants from '@utils/routeConstants';
+import songConstants from '@utils/routeConstants';
+import ItunesGridContainer from './containers/ItunesProvider/ItunesGridContainer/Loadable';
 export const routeConfig = {
-  repos: {
-    component: HomeContainer,
-    ...routeConstants.repos
+  songs: {
+    component: ItunesGridContainer,
+    ...songConstants.songs
   },
   notFoundPage: {
     component: NotFound,
