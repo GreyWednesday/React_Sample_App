@@ -8,7 +8,7 @@ exports[`<ItunesGridContainer /> tests should render and match the snapshot 1`] 
     >
       <div>
         <div
-          class="ant-card ant-card-bordered ItunesGridContainer__CustomCard-sc-19uygyz-1 ihoSQP"
+          class="ant-card ant-card-bordered ItunesGridContainer__CustomCard-sc-19uygyz-1 jBDmQB"
         >
           <div
             class="ant-card-head"
@@ -71,6 +71,7 @@ exports[`<ItunesGridContainer /> tests should render and match the snapshot 1`] 
           </div>
         </div>
       </div>
+      <div />
     </div>
   </div>
 </body>

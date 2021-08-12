@@ -2,7 +2,7 @@ export default {
   songs: {
     route: '/',
     props: {
-      maxwidth: 500,
+      maxwidth: 1000,
       padding: 20
     },
     exact: true
