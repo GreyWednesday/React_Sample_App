@@ -3,7 +3,7 @@ import debounce from 'lodash/debounce';
 import get from 'lodash/get';
 import { createStructuredSelector } from 'reselect';
 import { selectItunesProvider, selectSongName, selectSongs, selectError } from '../selectors';
-import { Row, Col, Card, Input } from 'antd';
+import { Row, Card, Input } from 'antd';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import ItunesProviderSaga from '../saga';
 import { ItunesProviderCreators } from '../reducer';
@@ -13,6 +13,7 @@ import { injectSaga } from 'redux-injectors';
 
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import SongCard from '@app/components/SongCard/index';
 
 const { Search } = Input;
 
@@ -28,42 +29,6 @@ const CustomCard = styled(Card)`
     max-width: 500px;
     padding: ${(props) => props.padding}px;
   }
-`;
-
-const SongCard = styled.div`
-  && {
-    display: grid;
-    margin: 20px auto;
-    background: #f1f3f4;
-    border-radius: 10px;
-    grid-template-columns: repeat(2, 1fr);
-    transition: ease-in-out 0.3s;
-    grid-gap: 10px;
-    word-wrap: break-word
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    justify-items: center;
-  }
-
-  :hover {
-    border-radius: 20px;
-    transform: scale(1.1);
-    box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.3);
-  }
-
-  audio {
-    grid-column: span 2;
-  }
-`;
-
-const Artwork = styled.img`
-  border-radius: 10px;
-  margin: 10px auto;
-`;
-
-const Title = styled.h3`
-  margin: auto;
 `;
 
 const ItunesGridContainer = ({ dispatchSongName, dispatchClearSongs, songs, error, songName, maxwidth, padding }) => {
@@ -93,19 +58,7 @@ const ItunesGridContainer = ({ dispatchSongName, dispatchClearSongs, songs, erro
     }
     if (songs.results) {
       const songsGrid = songs.results.map((song, songIdx) => {
-        return (
-          <Col span={8} key={songIdx}>
-            <a href={`/tracks/${song.trackId}/`}>
-              <SongCard>
-                <Artwork src={song.artworkUrl100} />
-                <Title>{song.trackName || ''}</Title>
-                <audio controls>
-                  <source src={song.previewUrl} type="audio/mpeg" />
-                </audio>
-              </SongCard>
-            </a>
-          </Col>
-        );
+        return <SongCard song={song} key={songIdx} />;
       });
       return (
         <Row gutter={[16, 16]} data-testid="grid">
