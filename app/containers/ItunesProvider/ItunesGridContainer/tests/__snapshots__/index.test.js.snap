@@ -4,13 +4,11 @@ exports[`<ItunesGridContainer /> tests should render and match the snapshot 1`] 
 <body>
   <div>
     <div
-      class="ItunesGridContainer__Songs-sc-19uygyz-0 cGlSVz"
+      class="ItunesGridContainer__Songs-sc-19uygyz-0 jEVCOD"
     >
-      <div
-        class="ItunesGridContainer__SearchList-sc-19uygyz-1"
-      >
+      <div>
         <div
-          class="ant-card ant-card-bordered ItunesGridContainer__CustomCard-sc-19uygyz-2 fnDpBM"
+          class="ant-card ant-card-bordered ItunesGridContainer__CustomCard-sc-19uygyz-1 ihoSQP"
         >
           <div
             class="ant-card-head"

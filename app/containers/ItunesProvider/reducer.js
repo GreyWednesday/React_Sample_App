@@ -5,10 +5,11 @@ import get from 'lodash/get';
 export const { Types: ItunesProviderTypes, Creators: ItunesProviderCreators } = createActions({
   requestSongs: ['songName'],
   putSongs: ['data'],
-  failureGettingSongs: ['error']
+  failureGettingSongs: ['error'],
+  clearSongs: []
 });
 
-export const initialState = { songName: null, songs: [], error: null };
+export const initialState = { songName: null, songs: {}, error: null };
 
 export const ItunesProviderReducer = (state = initialState, action) =>
   produce(state, (draft) => {
@@ -22,6 +23,8 @@ export const ItunesProviderReducer = (state = initialState, action) =>
       case ItunesProviderTypes.FAILURE_GETTING_SONGS:
         draft.error = get(action.error, 'message', 'Unable to fetch songs');
         break;
+      case ItunesProviderTypes.CLEAR_SONGS:
+        return initialState;
     }
   });
 

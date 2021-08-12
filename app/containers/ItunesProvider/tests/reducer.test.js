@@ -43,4 +43,12 @@ describe('ItunesProvider reducer tests', () => {
       })
     ).toEqual(expectedResult);
   });
+
+  it('should return the initial state when CLEAR_SONGS is dispatched', () => {
+    expect(
+      ItunesProviderReducer(state, {
+        type: ItunesProviderTypes.CLEAR_SONGS
+      })
+    ).toEqual(state);
+  });
 });
