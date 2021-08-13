@@ -5,6 +5,7 @@
   "get_repo_details": "Get details of repositories",
   "search_query": "Search query: {repoName}",
   "matching_repos": "Total number of matching repos: {totalCount}",
+  "something_went_wrong": "Sorry. Something went wrong! Please try again in sometime.",
   "error": "Unable to fetch songs",
   "stories": "Go to Storybook",
   "repository_name": "Repository Name: {name}",
@@ -14,5 +15,6 @@
   "search_bar": "Search for Songs",
   "search_bar_empty": "Type something in the search box for results to appear!",
   "collection_name": "Collection : ",
-  "no_information_available": "No Information Available"
+  "no_information_available": "No Information Available",
+  "song_not_found": "Song Not Found"
 }
