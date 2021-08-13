@@ -81,16 +81,16 @@ describe('<ItunesGridContainer /> tests', () => {
     expect(submitSpy).toBeCalled();
   });
 
-  it('should render the grid with 0 elements with we pass in zero number of songs', () => {
+  it('should not render the grid with 0 elements when we pass in zero number of songs', () => {
     songs = {
       results: []
     };
-    const { getByTestId } = renderProvider(<ItunesGridContainer dispatchSongName={submitSpy} songs={songs} />);
-    expect(getByTestId('grid').children.length).toBe(0);
+    const { queryByTestId } = renderProvider(<ItunesGridContainer dispatchSongName={submitSpy} songs={songs} />);
+    expect(queryByTestId(/for/)).toBeNull();
   });
 
   it('should render the grid with the correct number of elements', () => {
     const { getByTestId } = renderProvider(<ItunesGridContainer dispatchSongName={submitSpy} songs={songs} />);
-    expect(getByTestId('grid').children.length).toBe(2);
+    expect(getByTestId('for').children.length).toBe(2);
   });
 });

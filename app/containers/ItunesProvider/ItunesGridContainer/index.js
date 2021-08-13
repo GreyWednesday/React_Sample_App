@@ -14,6 +14,7 @@ import { injectSaga } from 'redux-injectors';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import SongCard from '@app/components/SongCard/index';
+import For from '@app/components/For/index';
 
 const { Search } = Input;
 
@@ -54,19 +55,20 @@ const ItunesGridContainer = ({ dispatchSongName, dispatchClearSongs, songs, erro
 
   const renderSongs = () => {
     if (!songs) {
-      return <div></div>;
+      return <p>Type something in the search box for results to appear!</p>;
     }
     if (songs.results) {
-      const songsGrid = songs.results.map((song, songIdx) => {
-        return <SongCard song={song} key={songIdx} />;
-      });
       return (
-        <Row gutter={[16, 16]} data-testid="grid">
-          {songsGrid}
-        </Row>
+        <For
+          of={songs.results}
+          ParentComponent={(props) => <Row gutter={[16, 16]} {...props} />}
+          renderItem={(song, songIdx) => {
+            return <SongCard song={song} key={songIdx} />;
+          }}
+        />
       );
     }
-    return <div></div>;
+    return <p>Type something in the search box for results to appear!</p>;
   };
 
   return (

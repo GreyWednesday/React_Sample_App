@@ -3,13 +3,15 @@ import { Col } from 'antd';
 
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import * as colors from '@app/themes/colors';
+import { styles } from '@app/themes/index';
 
 const Card = styled.div`
   && {
     display: grid;
-    margin: 20px auto;
-    background: #f1f3f4;
-    border-radius: 10px;
+    margin: 1.25em auto;
+    background: ${colors.primary};
+    ${styles.borderRadius('10px')};
     grid-template-columns: repeat(2, 1fr);
     transition: ease-in-out 0.3s;
     grid-gap: 10px;
@@ -21,9 +23,9 @@ const Card = styled.div`
   }
 
   :hover {
-    border-radius: 20px;
+    ${styles.borderRadius('20px')};
     transform: scale(1.1);
-    box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.3);
+    ${styles.boxShadow(5, 5, 30, 0)};
   }
 
   audio {
@@ -40,6 +42,10 @@ const Title = styled.h3`
   margin: auto;
 `;
 
+const Collection = styled.h5`
+  margin: auto;
+`;
+
 function SongCard({ song }) {
   return (
     <Col span={8} data-testid="song-card">
@@ -47,6 +53,10 @@ function SongCard({ song }) {
         <Card>
           <Artwork src={song ? song.artworkUrl100 : ''} />
           <Title>{song ? song.trackName : ''}</Title>
+          <Title>Collection Name : </Title>
+          <Collection>
+            {song ? `${song.collectionName ? song.collectionName : 'No Information available'}` : ''}
+          </Collection>
           <audio controls>
             <source src={song ? song.previewUrl : ''} type="audio/mpeg" />
           </audio>
@@ -57,7 +67,7 @@ function SongCard({ song }) {
 }
 
 SongCard.propTypes = {
-  song: PropTypes.Object
+  song: PropTypes.object
 };
 
 export default memo(SongCard);

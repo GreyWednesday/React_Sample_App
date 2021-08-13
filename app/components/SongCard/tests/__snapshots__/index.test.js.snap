@@ -12,7 +12,7 @@ exports[`<SongCard /> should render and match the snapshot 1`] = `
         href="/tracks/1000/"
       >
         <div
-          class="SongCard__Card-sc-163fh4j-0 jIUVOB"
+          class="SongCard__Card-sc-163fh4j-0 kqBnJO"
         >
           <img
             class="SongCard__Artwork-sc-163fh4j-1 jDqjW"
@@ -23,6 +23,16 @@ exports[`<SongCard /> should render and match the snapshot 1`] = `
           >
             abc
           </h3>
+          <h3
+            class="SongCard__Title-sc-163fh4j-2 iDAhMX"
+          >
+            Collection Name : 
+          </h3>
+          <h5
+            class="SongCard__Collection-sc-163fh4j-3 ejeFjk"
+          >
+            No Information available
+          </h5>
           <audio
             controls=""
           >
