@@ -4,12 +4,13 @@ import get from 'lodash/get';
 import { createStructuredSelector } from 'reselect';
 import { selectItunesProvider, selectSongName, selectSongs, selectError } from '../selectors';
 import { Row, Card, Input } from 'antd';
-import { injectIntl, FormattedMessage } from 'react-intl';
+import { injectIntl } from 'react-intl';
 import ItunesProviderSaga from '../saga';
 import { ItunesProviderCreators } from '../reducer';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { injectSaga } from 'redux-injectors';
+import T from '@components/T';
 
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -54,10 +55,7 @@ const ItunesGridContainer = ({ dispatchSongName, dispatchClearSongs, songs, erro
   const debouncedHandleOnChange = debounce(handleOnChange, 200);
 
   const renderSongs = () => {
-    if (!songs) {
-      return <p>Type something in the search box for results to appear!</p>;
-    }
-    if (songs.results) {
+    if (songs?.results?.length) {
       return (
         <For
           of={songs.results}
@@ -68,17 +66,17 @@ const ItunesGridContainer = ({ dispatchSongName, dispatchClearSongs, songs, erro
         />
       );
     }
-    return <p>Type something in the search box for results to appear!</p>;
+    return (
+      <p>
+        <T type="searchBarEmpty" id="search_bar_empty" />
+      </p>
+    );
   };
 
   return (
     <Songs maxwidth={maxwidth} padding={padding}>
       <div>
-        <CustomCard
-          title={<FormattedMessage id="search-bar" defaultMessage="Search for Songs" />}
-          maxwidth={maxwidth}
-          padding={padding}
-        >
+        <CustomCard title={<T type="searchbar" id="search_bar" />} maxwidth={maxwidth} padding={padding}>
           <Search
             data-testid="search-bar"
             type="text"
@@ -95,7 +93,10 @@ const ItunesGridContainer = ({ dispatchSongName, dispatchClearSongs, songs, erro
 ItunesGridContainer.propTypes = {
   dispatchSongName: PropTypes.func,
   dispatchClearSongs: PropTypes.func,
-  songs: PropTypes.object,
+  songs: PropTypes.shape({
+    resultsCount: PropTypes.number,
+    results: PropTypes.array
+  }),
   error: PropTypes.string,
   songName: PropTypes.string,
   maxwidth: PropTypes.number,

@@ -3,8 +3,8 @@ import { Col } from 'antd';
 
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import * as colors from '@app/themes/colors';
-import { styles } from '@app/themes/index';
+import T from '@components/T';
+import { colors, styles } from '@app/themes';
 
 const Card = styled.div`
   && {
@@ -53,9 +53,15 @@ function SongCard({ song }) {
         <Card>
           <Artwork src={song ? song.artworkUrl100 : ''} />
           <Title>{song ? song.trackName : ''}</Title>
-          <Title>Collection Name : </Title>
+          <Title>
+            <T type="collectionName" id="collection_name" />
+          </Title>
           <Collection>
-            {song ? `${song.collectionName ? song.collectionName : 'No Information available'}` : ''}
+            {song?.collectionName ? (
+              song.collectionName
+            ) : (
+              <T type="noInformationAvailable" id="no_information_available" />
+            )}
           </Collection>
           <audio controls>
             <source src={song ? song.previewUrl : ''} type="audio/mpeg" />

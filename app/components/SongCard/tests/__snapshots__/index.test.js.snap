@@ -26,12 +26,22 @@ exports[`<SongCard /> should render and match the snapshot 1`] = `
           <h3
             class="SongCard__Title-sc-163fh4j-2 iDAhMX"
           >
-            Collection Name : 
+            <p
+              class="T__StyledText-gjlic1-0 dYQPlL"
+              data-testid="t"
+            >
+              Collection : 
+            </p>
           </h3>
           <h5
             class="SongCard__Collection-sc-163fh4j-3 ejeFjk"
           >
-            No Information available
+            <p
+              class="T__StyledText-gjlic1-0 dYQPlL"
+              data-testid="t"
+            >
+              No Information Available
+            </p>
           </h5>
           <audio
             controls=""

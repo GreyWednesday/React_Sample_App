@@ -7,7 +7,6 @@
 import React from 'react';
 // import { fireEvent } from '@testing-library/dom'
 import { renderWithIntl, renderProvider } from '@utils/testUtils';
-import ReactDOM from 'react-dom';
 import SongCard from '../index';
 
 describe('<SongCard />', () => {
@@ -34,8 +33,8 @@ describe('<SongCard />', () => {
   });
 
   it('should render even with no image, audio or trackId or trackName', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<SongCard />, div);
+    const { baseElement } = renderWithIntl(<SongCard song={song} />);
+    expect(baseElement).toBeTruthy();
   });
 
   it('redirects to the correct link', () => {

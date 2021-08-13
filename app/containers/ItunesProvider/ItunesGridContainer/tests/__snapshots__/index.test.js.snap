@@ -19,7 +19,12 @@ exports[`<ItunesGridContainer /> tests should render and match the snapshot 1`] 
               <div
                 class="ant-card-head-title"
               >
-                Search for Songs
+                <p
+                  class="T__StyledText-gjlic1-0 dYQPlL"
+                  data-testid="t"
+                >
+                  Search for Songs
+                </p>
               </div>
             </div>
           </div>
@@ -72,7 +77,12 @@ exports[`<ItunesGridContainer /> tests should render and match the snapshot 1`] 
         </div>
       </div>
       <p>
-        Type something in the search box for results to appear!
+        <p
+          class="T__StyledText-gjlic1-0 dYQPlL"
+          data-testid="t"
+        >
+          Type something in the search box for results to appear!
+        </p>
       </p>
     </div>
   </div>
