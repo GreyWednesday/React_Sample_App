@@ -5,8 +5,8 @@
  */
 
 import React from 'react';
-// import { fireEvent } from '@testing-library/dom'
-import { renderWithIntl, renderProvider } from '@utils/testUtils';
+import { fireEvent } from '@testing-library/dom';
+import { renderWithIntl, renderProvider, timeout } from '@utils/testUtils';
 import SongCard from '../index';
 
 describe('<SongCard />', () => {
@@ -32,9 +32,25 @@ describe('<SongCard />', () => {
     expect(getAllByTestId('song-card').length).toBe(1);
   });
 
-  it('should render even with no image, audio or trackId or trackName', () => {
-    const { baseElement } = renderWithIntl(<SongCard song={song} />);
+  it('should render even with no trackId', () => {
+    const { baseElement } = renderWithIntl(<SongCard />);
     expect(baseElement).toBeTruthy();
+  });
+
+  it('should render the card with no trackName, artworkUrl or previewUrl but with trackId', async () => {
+    const emptySong = {
+      trackId: 1000
+    };
+    const { getByTestId } = renderProvider(<SongCard song={emptySong} />);
+    expect(getByTestId('card-img')).toHaveAttribute('src', 'react-template.png');
+
+    expect(getByTestId('card-name')).toHaveTextContent('Not available');
+
+    fireEvent.mouseOver(getByTestId('card-button'));
+    await timeout(200);
+    expect(getByTestId('card-collection-price')).toHaveTextContent('Not available');
+    expect(getByTestId('card-track-price')).toHaveTextContent('Not available');
+    expect(getByTestId('card-release-date')).toHaveTextContent('Not available');
   });
 
   it('redirects to the correct link', () => {

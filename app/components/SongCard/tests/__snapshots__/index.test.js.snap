@@ -12,22 +12,23 @@ exports[`<SongCard /> should render and match the snapshot 1`] = `
         href="/tracks/1000/"
       >
         <div
-          class="SongCard__Card-sc-163fh4j-0 kqBnJO"
+          class="SongCard__Card-sc-163fh4j-0 fJHoEV"
         >
           <img
             class="SongCard__Artwork-sc-163fh4j-1 jDqjW"
+            data-testid="card-img"
             src="react-template.png"
           />
           <h3
-            class="SongCard__Title-sc-163fh4j-2 iDAhMX"
+            class="SongCard__Title-sc-163fh4j-2 bXKZBU"
           >
             abc
           </h3>
           <h3
-            class="SongCard__Title-sc-163fh4j-2 iDAhMX"
+            class="SongCard__Title-sc-163fh4j-2 bXKZBU"
           >
             <p
-              class="T__StyledText-gjlic1-0 dYQPlL"
+              class="T__StyledText-gjlic1-0 kYcyRq"
               data-testid="t"
             >
               Collection : 
@@ -35,15 +36,17 @@ exports[`<SongCard /> should render and match the snapshot 1`] = `
           </h3>
           <h5
             class="SongCard__Collection-sc-163fh4j-3 ejeFjk"
+            data-testid="card-name"
           >
             <p
-              class="T__StyledText-gjlic1-0 dYQPlL"
+              class="T__StyledText-gjlic1-0 kYcyRq"
               data-testid="t"
             >
-              No Information Available
+              Not available
             </p>
           </h5>
           <audio
+            class="SongCard__Audio-sc-163fh4j-4 ekeYjX"
             controls=""
           >
             <source
@@ -51,6 +54,23 @@ exports[`<SongCard /> should render and match the snapshot 1`] = `
               type="audio/mpeg"
             />
           </audio>
+          <div
+            class="SongCard__DescriptionWrapper-sc-163fh4j-5 jAfxOx"
+          >
+            <button
+              class="ant-btn ant-btn-primary"
+              data-testid="card-button"
+              style="background: rgb(60, 81, 134); border: 0em;"
+              type="button"
+            >
+              <p
+                class="T__StyledText-gjlic1-0 kYcyRq"
+                data-testid="t"
+              >
+                More Details
+              </p>
+            </button>
+          </div>
         </div>
       </a>
     </div>

@@ -4,7 +4,7 @@ exports[`<Header /> should render and match the snapshot 1`] = `
 <body>
   <div>
     <header
-      class="ant-layout-header Header__StyledHeader-wp2jxc-0 jpfWFm"
+      class="ant-layout-header Header__StyledHeader-wp2jxc-0 ibvkDk"
       data-testid="header"
       intl="[object Object]"
     >
