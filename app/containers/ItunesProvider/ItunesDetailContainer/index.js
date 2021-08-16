@@ -15,7 +15,7 @@ const { Panel } = Collapse;
 
 const Wrapper = styled.div`
   margin: auto;
-  padding-top: 20px;
+  padding: 20px 0px 20px;
   max-width: 500px;
 `;
 
@@ -27,7 +27,7 @@ const ItunesDetailContainer = ({ match, songs }) => {
       const details = Object.entries(foundSong).map((entry, idx) => {
         return (
           <Panel header={entry[0]} key={idx}>
-            <p>{entry[1]}</p>
+            <p data-testid="detail-panel">{entry[1]}</p>
           </Panel>
         );
       });
@@ -40,11 +40,7 @@ const ItunesDetailContainer = ({ match, songs }) => {
     );
   };
 
-  return match !== 'NotFound' ? (
-    <Wrapper data-testid="detail">{getSong(match?.params?.trackId || 12345)}</Wrapper>
-  ) : (
-    <T type="standard" id="song_not_found" />
-  );
+  return <Wrapper data-testid="detail">{getSong(match?.params?.trackId)}</Wrapper>;
 };
 
 ItunesDetailContainer.propTypes = {

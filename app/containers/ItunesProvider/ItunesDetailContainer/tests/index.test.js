@@ -41,6 +41,16 @@ describe('<ItunesDetailContainer />', () => {
     expect(baseElement).toMatchSnapshot();
   });
 
+  it('should render if it finds the song', () => {
+    match = {
+      params: {
+        trackId: 1469577741
+      }
+    };
+    const { getByTestId } = renderProvider(<ItunesDetailContainer match={match} songs={songs} />);
+    expect(getByTestId('detail-panel')).toBeTruthy();
+  });
+
   it('should not crash if it is not able to find the song', () => {
     const { getByTestId } = renderProvider(<ItunesDetailContainer match={match} songs={songs} />);
     expect(getByTestId('detail')).toBeTruthy();

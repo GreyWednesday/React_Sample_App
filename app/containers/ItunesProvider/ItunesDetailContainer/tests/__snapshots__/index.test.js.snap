@@ -4,7 +4,7 @@ exports[`<ItunesDetailContainer /> should render and match the snapshot 1`] = `
 <body>
   <div>
     <div
-      class="ItunesDetailContainer__Wrapper-sc-1pgd82j-0 cQiwvY"
+      class="ItunesDetailContainer__Wrapper-sc-1pgd82j-0 YzlAk"
       data-testid="detail"
     >
       <p>
