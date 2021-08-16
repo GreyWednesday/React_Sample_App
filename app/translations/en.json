@@ -16,5 +16,7 @@
   "search_bar_empty": "Type something in the search box for results to appear!",
   "collection_name": "Collection : ",
   "no_information_available": "No Information Available",
-  "song_not_found": "Song Not Found"
+  "song_not_found": "Song Not Found",
+  "more_details": "More Details",
+  "not_available": "Not available"
 }

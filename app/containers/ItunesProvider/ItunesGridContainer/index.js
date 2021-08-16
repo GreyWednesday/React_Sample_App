@@ -54,24 +54,20 @@ const ItunesGridContainer = ({ dispatchSongName, dispatchClearSongs, songs, erro
   };
   const debouncedHandleOnChange = debounce(handleOnChange, 200);
 
-  const renderSongs = () => {
-    if (songs?.results?.length) {
-      return (
-        <For
-          of={songs.results}
-          ParentComponent={(props) => <Row gutter={[16, 16]} {...props} />}
-          renderItem={(song, songIdx) => {
-            return <SongCard song={song} key={songIdx} />;
-          }}
-        />
-      );
-    }
-    return (
+  const renderSongs = () =>
+    songs?.results?.length ? (
+      <For
+        of={songs.results}
+        ParentComponent={(props) => <Row gutter={[16, 16]} {...props} />}
+        renderItem={(song, songIdx) => {
+          return <SongCard song={song} key={songIdx} />;
+        }}
+      />
+    ) : (
       <p>
         <T type="searchBarEmpty" id="search_bar_empty" />
       </p>
     );
-  };
 
   return (
     <Songs maxwidth={maxwidth} padding={padding}>
@@ -95,7 +91,15 @@ ItunesGridContainer.propTypes = {
   dispatchClearSongs: PropTypes.func,
   songs: PropTypes.shape({
     resultsCount: PropTypes.number,
-    results: PropTypes.array
+    results: PropTypes.arrayOf(
+      PropTypes.shape({
+        trackId: PropTypes.number,
+        artworkUrl100: PropTypes.string,
+        trackName: PropTypes.string,
+        collectionName: PropTypes.string,
+        previewUrl: PropTypes.string
+      })
+    )
   }),
   error: PropTypes.string,
   songName: PropTypes.string,

@@ -39,7 +39,11 @@ const ItunesDetailContainer = ({ match, songs }) => {
     );
   };
 
-  return <Wrapper data-testid="detail">{getSong(match?.params?.trackId || 12345)}</Wrapper>;
+  return match !== 'NotFound' ? (
+    <Wrapper data-testid="detail">{getSong(match?.params?.trackId || 12345)}</Wrapper>
+  ) : (
+    <h1>Song not found</h1>
+  );
 };
 
 ItunesDetailContainer.propTypes = {
