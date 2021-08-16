@@ -97,7 +97,10 @@ ItunesGridContainer.propTypes = {
         artworkUrl100: PropTypes.string,
         trackName: PropTypes.string,
         collectionName: PropTypes.string,
-        previewUrl: PropTypes.string
+        previewUrl: PropTypes.string,
+        collectionPrice: PropTypes.string,
+        trackPrice: PropTypes.string,
+        releaseDate: PropTypes.string
       })
     )
   }),

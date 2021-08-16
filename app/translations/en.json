@@ -18,5 +18,9 @@
   "no_information_available": "No Information Available",
   "song_not_found": "Song Not Found",
   "more_details": "More Details",
-  "not_available": "Not available"
+  "preview_not_available": "Preview not available",
+  "not_available": "Not available",
+  "collection_price": "Collection Price",
+  "track_price": "Track Price",
+  "release_date": "Release Date"
 }

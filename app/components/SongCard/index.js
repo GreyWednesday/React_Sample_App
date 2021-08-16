@@ -52,6 +52,22 @@ const DescriptionWrapper = styled.div`
   grid-column: span 2;
 `;
 
+const ErrorCard = styled.div`
+  && {
+    margin: 1em auto;
+    padding: 1em;
+    height: 150px;
+    background: ${colors.primary};
+    ${styles.borderRadius('10px')};
+    justify-items: center;
+  }
+`;
+
+const ErrorMessage = styled.h1`
+  transform: rotate(45deg);
+  margin: 1.25em auto;
+`;
+
 function SongCard({ song }) {
   const checkAvailability = (variable) => (
     <If condition={variable} otherwise={<T type="standard" id="not_available" />}>
@@ -62,29 +78,41 @@ function SongCard({ song }) {
   const descContent = () => {
     return (
       <div>
-        <p>Collection Price : {checkAvailability(song?.collectionPrice)}</p>
-        <p>Track Price : {checkAvailability(song?.trackPrice)}</p>
-        <p>Release Date : {checkAvailability(song?.releaseDate)}</p>
+        <p data-testid="card-collection-price">
+          <T type="subtext" id="collection_price" /> : {checkAvailability(song?.collectionPrice)}
+        </p>
+        <p data-testid="card-track-price">
+          <T type="subtext" id="track_price" /> : {checkAvailability(song?.trackPrice)}
+        </p>
+        <p data-testid="card-release-date">
+          <T type="subtext" id="release_date" /> : {checkAvailability(song?.releaseDate)}
+        </p>
       </div>
     );
   };
 
-  return (
+  return song?.trackId ? (
     <Col span={8} data-testid="song-card">
-      <a href={`/tracks/${song ? song.trackId : '/NotFound'}/`} data-testid="card-link">
+      <a href={`/tracks/${song.trackId}/`} data-testid="card-link">
         <Card>
-          <Artwork src={song ? song.artworkUrl100 : 'react-template.png'} />
+          <Artwork src={song?.artworkUrl100 || 'react-template.png'} data-testid="card-img" />
           <Title>{checkAvailability(song?.trackName)}</Title>
           <Title>
-            <T type="collectionName" id="collection_name" />
+            <T type="standard" id="collection_name" />
           </Title>
-          <Collection>{checkAvailability(song?.collectionName)}</Collection>
-          <Audio controls>
-            <source src={song ? song.previewUrl : '/demo'} type="audio/mpeg" />
-          </Audio>
+          <Collection data-testid="card-name">{checkAvailability(song?.collectionName)}</Collection>
+          <If condition={song?.previewUrl} otherwise={<T type="standard" id="not_available" />}>
+            <Audio controls>
+              <source src={song.previewUrl} type="audio/mpeg" />
+            </Audio>
+          </If>
           <DescriptionWrapper>
             <Popover content={descContent} title="Description">
-              <Button type="primary" style={{ background: `${colors.secondary}`, border: '0em' }}>
+              <Button
+                type="primary"
+                style={{ background: `${colors.secondary}`, border: '0em' }}
+                data-testid="card-button"
+              >
                 <T type="standard" id="more_details" />
               </Button>
             </Popover>
@@ -92,11 +120,24 @@ function SongCard({ song }) {
         </Card>
       </a>
     </Col>
+  ) : (
+    <ErrorCard data-testid="error-card">
+      <ErrorMessage>Not Available</ErrorMessage>
+    </ErrorCard>
   );
 }
 
 SongCard.propTypes = {
-  song: PropTypes.object
+  song: PropTypes.shape({
+    trackId: PropTypes.number.isRequired,
+    artworkUrl100: PropTypes.string,
+    trackName: PropTypes.string,
+    collectionName: PropTypes.string,
+    previewUrl: PropTypes.string,
+    collectionPrice: PropTypes.string,
+    trackPrice: PropTypes.string,
+    releaseDate: PropTypes.string
+  })
 };
 
 export default memo(SongCard);
