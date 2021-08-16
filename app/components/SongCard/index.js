@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import T from '@components/T';
 import { colors, styles } from '@app/themes';
-import If from '../If/index';
+import If from '@components/If';
 
 const Card = styled.div`
   && {
@@ -122,7 +122,9 @@ function SongCard({ song }) {
     </Col>
   ) : (
     <ErrorCard data-testid="error-card">
-      <ErrorMessage>Not Available</ErrorMessage>
+      <ErrorMessage>
+        <T type="standard" id="not_available" />
+      </ErrorMessage>
     </ErrorCard>
   );
 }
