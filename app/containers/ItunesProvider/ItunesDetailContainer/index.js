@@ -14,7 +14,8 @@ import { T } from '@app/components/T/index';
 const { Panel } = Collapse;
 
 const Wrapper = styled.div`
-  margin: 20px auto;
+  margin: auto;
+  padding-top: 20px;
   max-width: 500px;
 `;
 
@@ -34,7 +35,7 @@ const ItunesDetailContainer = ({ match, songs }) => {
     }
     return (
       <p>
-        <T type="SongNotFound" id="song_not_found" />
+        <T type="standard" id="song_not_found" />
       </p>
     );
   };
@@ -42,7 +43,7 @@ const ItunesDetailContainer = ({ match, songs }) => {
   return match !== 'NotFound' ? (
     <Wrapper data-testid="detail">{getSong(match?.params?.trackId || 12345)}</Wrapper>
   ) : (
-    <h1>Song not found</h1>
+    <T type="standard" id="song_not_found" />
   );
 };
 
