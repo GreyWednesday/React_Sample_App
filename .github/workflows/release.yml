@@ -1,12 +1,41 @@
-name: ReleaseCI
+name: Upload Website
+
 on:
   push:
     branches:
-      - master
+    - master
+
 jobs:
   build:
+    name: Build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Build
+        run: yarn build
+  deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Release to S3
-      run: bash scripts/pipeline/release.sh "itunes-demo" "folder/build" ${{secrets.AWS_Access_Key}} ${{secrets.AWS_Access_Secret}} "build"
+    - uses: actions/checkout@master
+    - uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'itunes-demo'
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS }}
+        AWS_REGION: 'ap-south-1'
+        SOURCE_DIR: 'build'
+        DEST_DIR: 'project'
