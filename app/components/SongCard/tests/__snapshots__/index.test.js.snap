@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SongCard /> should render and match the snapshot 1`] = `
+<body>
+  <div>
+    <div
+      class="ant-col ant-col-8"
+      data-testid="song-card"
+    >
+      <a
+        data-testid="card-link"
+        href="/tracks/1000/"
+      >
+        <div
+          class="SongCard__Card-sc-163fh4j-0 fJHoEV"
+        >
+          <img
+            class="SongCard__Artwork-sc-163fh4j-1 jDqjW"
+            data-testid="card-img"
+            src="react-template.png"
+          />
+          <h3
+            class="SongCard__Title-sc-163fh4j-2 bXKZBU"
+          >
+            abc
+          </h3>
+          <h3
+            class="SongCard__Title-sc-163fh4j-2 bXKZBU"
+          >
+            <p
+              class="T__StyledText-gjlic1-0 kYcyRq"
+              data-testid="t"
+            >
+              Collection : 
+            </p>
+          </h3>
+          <h5
+            class="SongCard__Collection-sc-163fh4j-3 ejeFjk"
+            data-testid="card-name"
+          >
+            <p
+              class="T__StyledText-gjlic1-0 kYcyRq"
+              data-testid="t"
+            >
+              Not available
+            </p>
+          </h5>
+          <audio
+            class="SongCard__Audio-sc-163fh4j-4 ekeYjX"
+            controls=""
+          >
+            <source
+              src="https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/5e/5b/3d/5e5b3df4-deb5-da78-5d64-fe51d8404d5c/mzaf_13341178261601361485.plus.aac.p.m4a"
+              type="audio/mpeg"
+            />
+          </audio>
+          <div
+            class="SongCard__DescriptionWrapper-sc-163fh4j-5 jAfxOx"
+          >
+            <button
+              class="ant-btn ant-btn-primary SongCard__StyledButton-sc-163fh4j-6 cRaZVS"
+              data-testid="card-button"
+              type="button"
+            >
+              <p
+                class="T__StyledText-gjlic1-0 kYcyRq"
+                data-testid="t"
+              >
+                More Details
+              </p>
+            </button>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</body>
+`;

@@ -3,15 +3,19 @@ import debounce from 'lodash/debounce';
 import get from 'lodash/get';
 import { createStructuredSelector } from 'reselect';
 import { selectItunesProvider, selectSongName, selectSongs, selectError } from '../selectors';
-import { injectIntl, FormattedMessage } from 'react-intl';
+import { Row, Card, Input } from 'antd';
+import { injectIntl } from 'react-intl';
 import ItunesProviderSaga from '../saga';
 import { ItunesProviderCreators } from '../reducer';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { injectSaga } from 'redux-injectors';
-import { Card, Input } from 'antd';
+import T from '@components/T';
+
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import SongCard from '@app/components/SongCard/index';
+import For from '@app/components/For/index';
 
 const { Search } = Input;
 
@@ -24,7 +28,7 @@ const Songs = styled.div`
 const CustomCard = styled(Card)`
   && {
     margin: 20px auto;
-    max-width: ${(props) => props.maxwidth}px;
+    max-width: 500px;
     padding: ${(props) => props.padding}px;
   }
 `;
@@ -50,14 +54,25 @@ const ItunesGridContainer = ({ dispatchSongName, dispatchClearSongs, songs, erro
   };
   const debouncedHandleOnChange = debounce(handleOnChange, 200);
 
+  const renderSongs = () =>
+    songs?.results?.length ? (
+      <For
+        of={songs.results}
+        ParentComponent={(props) => <Row gutter={[16, 16]} {...props} />}
+        renderItem={(song, songIdx) => {
+          return <SongCard song={song} key={songIdx} />;
+        }}
+      />
+    ) : (
+      <p>
+        <T type="searchBarEmpty" id="search_bar_empty" />
+      </p>
+    );
+
   return (
-    <Songs maxwidth={maxwidth} padding={padding}>
+    <Songs maxwidth={maxwidth} padding={padding} data-testid="grid">
       <div>
-        <CustomCard
-          title={<FormattedMessage id="search-bar" defaultMessage="Search for Songs" />}
-          maxwidth={maxwidth}
-          padding={padding}
-        >
+        <CustomCard title={<T type="searchbar" id="search_bar" />} maxwidth={maxwidth} padding={padding}>
           <Search
             data-testid="search-bar"
             type="text"
@@ -66,6 +81,7 @@ const ItunesGridContainer = ({ dispatchSongName, dispatchClearSongs, songs, erro
           />
         </CustomCard>
       </div>
+      {renderSongs()}
     </Songs>
   );
 };
@@ -73,7 +89,21 @@ const ItunesGridContainer = ({ dispatchSongName, dispatchClearSongs, songs, erro
 ItunesGridContainer.propTypes = {
   dispatchSongName: PropTypes.func,
   dispatchClearSongs: PropTypes.func,
-  songs: PropTypes.object,
+  songs: PropTypes.shape({
+    resultsCount: PropTypes.number,
+    results: PropTypes.arrayOf(
+      PropTypes.shape({
+        trackId: PropTypes.number,
+        artworkUrl100: PropTypes.string,
+        trackName: PropTypes.string,
+        collectionName: PropTypes.string,
+        previewUrl: PropTypes.string,
+        collectionPrice: PropTypes.string,
+        trackPrice: PropTypes.string,
+        releaseDate: PropTypes.string
+      })
+    )
+  }),
   error: PropTypes.string,
   songName: PropTypes.string,
   maxwidth: PropTypes.number,

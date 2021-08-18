@@ -2,7 +2,7 @@ import React from 'react';
 import { IntlProvider } from 'react-intl';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { browserHistory } from 'react-router-dom';
+import { browserHistory, BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import configureStore from '@app/configureStore';
 import { DEFAULT_LOCALE, translationMessages } from '@app/i18n';
@@ -11,9 +11,11 @@ import { IntlGlobalProvider } from '@components/IntlGlobalProvider';
 
 export const renderWithIntl = (children) =>
   render(
-    <IntlProvider locale={DEFAULT_LOCALE} messages={translationMessages[DEFAULT_LOCALE]}>
-      <IntlGlobalProvider>{children}</IntlGlobalProvider>
-    </IntlProvider>
+    <BrowserRouter>
+      <IntlProvider locale={DEFAULT_LOCALE} messages={translationMessages[DEFAULT_LOCALE]}>
+        <IntlGlobalProvider>{children}</IntlGlobalProvider>
+      </IntlProvider>
+    </BrowserRouter>
   );
 
 export const getComponentStyles = (Component, props = {}) => {
