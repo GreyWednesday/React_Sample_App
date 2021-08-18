@@ -3,8 +3,13 @@ import { ItunesProviderReducer, initialState, ItunesProviderTypes } from '../red
 /* eslint-disable default-case, no-param-reassign */
 describe('ItunesProvider reducer tests', () => {
   let state;
+  let trackDetails;
+  let songName;
+
   beforeEach(() => {
     state = initialState;
+    trackDetails = { details: 'Hey' };
+    songName = 'Hey';
   });
 
   it('should return the initial state', () => {
@@ -12,7 +17,6 @@ describe('ItunesProvider reducer tests', () => {
   });
 
   it('should return the initial state when an action of type GET_SONG is dispatched', () => {
-    const songName = 'hey';
     const expectedResult = { ...state, songName };
     expect(
       ItunesProviderReducer(state, {
@@ -28,6 +32,17 @@ describe('ItunesProvider reducer tests', () => {
     expect(
       ItunesProviderReducer(state, {
         type: ItunesProviderTypes.PUT_SONGS,
+        data
+      })
+    ).toEqual(expectedResult);
+  });
+
+  it('should ensure that the track details are present in store when PUT_TRACK_DETAILS is dispatched', () => {
+    const expectedResult = { ...state, trackDetails };
+    const data = { details: 'Hey' };
+    expect(
+      ItunesProviderReducer(state, {
+        type: ItunesProviderTypes.PUT_TRACK_DETAILS,
         data
       })
     ).toEqual(expectedResult);
@@ -50,5 +65,15 @@ describe('ItunesProvider reducer tests', () => {
         type: ItunesProviderTypes.CLEAR_SONGS
       })
     ).toEqual(state);
+  });
+
+  it('should clear the track details when CLEAR_TRACK_DETAILS is dispatched', () => {
+    const trackDetails = 'hey';
+    state = { ...state, trackDetails };
+    expect(
+      ItunesProviderReducer(state, {
+        type: ItunesProviderTypes.CLEAR_TRACK_DETAILS
+      })
+    ).toEqual(initialState);
   });
 });
