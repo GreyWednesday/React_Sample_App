@@ -22,5 +22,8 @@
   "not_available": "Not available",
   "collection_price": "Collection Price : {collectionPrice}",
   "track_price": "Track Price : {trackPrice}",
-  "release_date": "Release Date : {releaseDate}"
+  "release_date": "Release Date : {releaseDate}",
+  "artist_name": "Artist Name",
+  "home": "Home",
+  "track_details": "Track Details"
 }

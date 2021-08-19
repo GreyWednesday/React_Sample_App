@@ -8,6 +8,9 @@ export const selectItunesProvider = () => createSelector(selectItunesProviderDom
 
 export const selectSongs = () => createSelector(selectItunesProviderDomain, (substate) => get(substate, 'songs'));
 
+export const selectTrackDetails = () =>
+  createSelector(selectItunesProviderDomain, (substate) => get(substate, 'trackDetails'));
+
 export const selectError = () => createSelector(selectItunesProviderDomain, (substate) => get(substate, 'error'));
 
 export const selectSongName = () =>
