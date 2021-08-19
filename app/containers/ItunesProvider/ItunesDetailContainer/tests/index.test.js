@@ -54,11 +54,16 @@ describe('<ItunesDetailContainer />', () => {
 
   it('should not crash if it receives no track details', () => {
     const { getByTestId } = renderProvider(
-      <ItunesDetailContainer match={match} dispatchRequestSongDetail={() => {}} dispatchClearTrackDetails={() => {}} />
+      <ItunesDetailContainer
+        match={match}
+        dispatchRequestSongDetail={() => {}}
+        dispatchClearTrackDetails={() => {}}
+        isLoading={false}
+      />
     );
     expect(getByTestId('detail')).toBeTruthy();
 
-    expect(getByTestId('t')).toHaveTextContent('Song Not Found');
+    expect(getByTestId('song_not_found')).toHaveTextContent('Song Not Found');
   });
 
   it('should receive the selectSongs() selector', () => {
