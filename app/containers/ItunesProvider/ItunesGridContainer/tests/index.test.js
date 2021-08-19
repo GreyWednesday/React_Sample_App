@@ -90,7 +90,7 @@ describe('<ItunesGridContainer /> tests', () => {
   });
 
   it('should render the grid with the correct number of elements', () => {
-    const { getByTestId } = renderProvider(<ItunesGridContainer dispatchSongName={submitSpy} songs={songs} />);
-    expect(getByTestId('for').children.length).toBe(2);
+    const { getAllByTestId } = renderProvider(<ItunesGridContainer dispatchSongName={submitSpy} songs={songs} />);
+    expect(getAllByTestId('song-card').length).toBe(2);
   });
 });

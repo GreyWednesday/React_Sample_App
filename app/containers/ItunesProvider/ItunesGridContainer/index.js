@@ -70,7 +70,7 @@ const ItunesGridContainer = ({ dispatchSongName, dispatchClearSongs, songs, erro
     );
 
   return (
-    <Songs maxwidth={maxwidth} padding={padding}>
+    <Songs maxwidth={maxwidth} padding={padding} data-testid="grid">
       <div>
         <CustomCard title={<T type="searchbar" id="search_bar" />} maxwidth={maxwidth} padding={padding}>
           <Search

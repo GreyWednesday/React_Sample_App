@@ -33,7 +33,8 @@ describe('<SongCard />', () => {
   });
 
   it('should render even with no trackId', () => {
-    const { baseElement } = renderWithIntl(<SongCard />);
+    song = {};
+    const { baseElement } = renderWithIntl(<SongCard song={song} />);
     expect(baseElement).toBeTruthy();
   });
 

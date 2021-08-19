@@ -58,9 +58,8 @@ exports[`<SongCard /> should render and match the snapshot 1`] = `
             class="SongCard__DescriptionWrapper-sc-163fh4j-5 jAfxOx"
           >
             <button
-              class="ant-btn ant-btn-primary"
+              class="ant-btn ant-btn-primary SongCard__StyledButton-sc-163fh4j-6 cRaZVS"
               data-testid="card-button"
-              style="background: rgb(60, 81, 134); border: 0em;"
               type="button"
             >
               <p

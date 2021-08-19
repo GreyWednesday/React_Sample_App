@@ -20,9 +20,9 @@
   "more_details": "More Details",
   "preview_not_available": "Preview not available",
   "not_available": "Not available",
-  "collection_price": "Collection Price",
-  "track_price": "Track Price",
-  "release_date": "Release Date",
+  "collection_price": "Collection Price : {collectionPrice}",
+  "track_price": "Track Price : {trackPrice}",
+  "release_date": "Release Date : {releaseDate}",
   "artist_name": "Artist Name",
   "home": "Home",
   "track_details": "Track Details"
